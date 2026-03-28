@@ -59,6 +59,16 @@ body {
   object-fit: cover;
 }
 
+@media (max-width: 768px) {
+  .card1 img {
+    height: 250px;
+  }
+
+  .card1 {
+    width: 100%;
+  }
+}
+
 .btn {
   display: block;
   margin-top: 10px;

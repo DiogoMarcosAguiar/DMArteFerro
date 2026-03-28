@@ -54,23 +54,21 @@ function fecharModal(){
 
 function finalizarCompra(){
   if(carrinho.length === 0){
-    alert("Seu carrinho está vazio!");
+    alert("Carrinho vazio!");
     return;
   }
 
-  let mensagem = "Olá, quero fazer um pedido:\n\n";
+  let mensagem = "Olá, quero comprar:\n\n";
   let total = 0;
 
-  carrinho.forEach((item, index) => {
-    mensagem += `${index + 1} - ${item.nome} - R$${item.preco}\n`;
+  carrinho.forEach(item => {
+    mensagem += `- ${item.nome} R$${item.preco}\n`;
     total += item.preco;
   });
 
   mensagem += `\nTotal: R$${total}`;
 
-  // Codifica a mensagem para URL
   let url = "https://wa.me/5511984416554?text=" + encodeURIComponent(mensagem);
 
-  // Abre o WhatsApp
   window.open(url, "_blank");
 }
