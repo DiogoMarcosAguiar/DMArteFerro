@@ -9,11 +9,17 @@
 <link rel="apple-touch-icon" href="Logo_icon.png">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<audio id="musicaFundo" loop>
+  <source src="introducao.mp3" type="audio/mpeg">
+</audio>
+
 </head>
 
 <body>
 
 <header class="topo">
+  <button onclick="toggleMusica()" class="btn-musica">🔇</button>
+
   <button onclick="verCarrinho()" class="carrinho-btn">
   🛒 <span id="contador">0</span>
 </button>
@@ -24,6 +30,79 @@
 </header>
 <br>
 <h2 class="titulo-secao">🔥 Ferros de Exu 🔥</h2>
+
+<section class="carrossel">
+  <div class="slides">
+
+    <div class="slide ativo">
+      <img src="Cast1.jpg" onclick="abrirModalCarrossel(this, '🕯️Castiçal🔥', 19.90)">
+      <div class="legenda">🕯️✨Castiçais✨🔥</div>
+    </div>
+
+    <div class="slide">
+      <img src="Castexu.jpg" onclick="abrirModalCarrossel(this, '🕯️Castiçal🔥', 34.90)">
+      <div class="legenda">🕯️✨Castiçal Exú✨🔥</div>
+    </div>
+
+    <div class="slide">
+      <img src="Castexu2.jpg" onclick="abrirModalCarrossel(this, '✨Castiçal🔥', 34.90)">
+      <div class="legenda">🕯️✨Castiçal Exú✨🔥 </div>
+    </div>
+
+    <div class="slide">
+      <img src="CastExuPombagira.jpg" onclick="abrirModalCarrossel(this, '✨Castiçal🔥', 34.90)">
+      <div class="legenda">🕯️✨Castiçal Exú e Pomba Gira✨🔥</div>
+    </div>
+
+    <div class="slide">
+      <img src="CastExuPombagira1.jpg" onclick="abrirModalCarrossel(this, '✨Castiçal🔥', 34.90)">
+      <div class="legenda"> 🕯️✨Castiçal Exú e Pomba Gira✨🔥</div>
+    </div>
+
+    <div class="slide">
+      <img src="Exu_Marabo.jpg"onclick="abrirModalCarrossel(this, 'Ferro de Exú', 69.90)">
+      <div class="legenda"> ✨🔥Ferro de Exú Marabô✨🔥</div>
+    </div>
+
+    <div class="slide">
+      <img src="LOGO.jpeg">
+      <div class="legenda">DMArteFerro 🕯️</div>
+    </div>
+
+    <div class="slide">
+      <img src="Exu_Ogum_prata.jpg" onclick="abrirModalCarrossel(this, '✨Castiçal', 34.90)">
+      <div class="legenda">🕯️✨🔥Castiçal Ogum🔥✨🕯️</div>
+    </div>
+
+    <div class="slide">
+      <img src="FerroExu.jpeg" onclick="abrirModalCarrossel(this, 'Ferro de Exú', 79.90)">
+      <div class="legenda">✨Ferro de Exú ✨</div>
+    </div>
+
+    <div class="slide">
+      <img src="FerroExuOuro.jpeg" onclick="abrirModalCarrossel(this, 'Ferro de Exú Ouro', 79.90)">
+      <div class="legenda">✨ Ferro Exú Ouro ✨</div>
+    </div>
+
+    <div class="slide">
+      <img src="FerroExuPombagiraCoracao.jpg" onclick="abrirModalCarrossel(this, 'Ferro de Exú e Pomba Gira', 69.90)">
+      <div class="legenda">✨ Ferro de Exú e Pomba Gira ✨</div>
+    </div>
+
+      <div class="slide">
+      <img src="Kit_FerroExuPombagira.jpeg" onclick="abrirModalCarrossel(this, 'Ferro de Exú e Pomba Gira', 54.90)">
+      <div class="legenda">✨ Ferro de Exú e Pomba Gira ✨</div>
+    </div>
+
+    <div class="slide">
+      <img src="MiniFerroExuPombagira.jpg" onclick="abrirModalCarrossel(this, 'Ferro de Exú Ouro', 29.90)">
+      <div class="legenda">KIT Ferro Exu e Pomba Gira 🕯️</div>
+    </div>
+  </div>
+
+  <button class="prev">&#10094;</button>
+  <button class="next">&#10095;</button>
+</section>
 <section class="produtos">
 
     <div class="card1">
@@ -229,7 +308,7 @@
        <h3>Redes Sociais</h3>      
       <div class="redes">
         <a href="#" class="social facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.instagram.com/dmartezanal/" class="social instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.instagram.com/dmartezanal/" class="social instagram" target="_blank"><i class="fab fa-instagram"></i></a>
         <a href="#" class="social x"><i class="fab fa-x-twitter"></i></a>
         <a href="#" class="social tiktok"><i class="fab fa-tiktok"></i></a>
       </div>
@@ -257,6 +336,17 @@
 
 <div id="modal" class="modal" onclick="fecharModal()">
   <img id="imgModal">
+</div>
+
+<div id="modalCarrossel" class="modal" onclick="fecharModalCarrossel()">
+  <div class="modal-conteudo" onclick="event.stopPropagation()">
+    <img id="imgCarrosselZoom">
+
+    <div class="acoes-modal">
+      <button onclick="adicionarDoCarrossel()" class="btn">Adicionar ao Carrinho</button>
+      <button onclick="fecharModalCarrossel()" class="btn-voltar">Voltar</button>
+    </div>
+  </div>
 </div>
 
 </body>

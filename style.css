@@ -336,3 +336,106 @@ body {
   justify-content: center; /* CENTRALIZA */
   gap: 15px; /* espaçamento entre ícones */
 }
+
+.carrossel {
+  position: relative;
+  max-width: 900px;
+  margin: 30px auto;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.slide {
+  min-width: 100%;
+  position: relative;
+}
+
+.slide img {
+  width: 100%;
+  height: 400px;
+  object-fit: contain; /* MOSTRA A IMAGEM INTEIRA */
+  background: black; /* fundo pra não ficar feio */
+}
+
+.legenda {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: gold;
+  font-size: 22px;
+  font-weight: bold;
+  background: rgba(0,0,0,0.6);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* BOTÕES */
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 50%;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+.prev:hover, .next:hover {
+  background: gold;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .slide img {
+    height: 250px;
+  }
+}
+
+.modal-conteudo {
+  position: relative;
+  text-align: center;
+}
+
+#imgCarrosselZoom {
+  max-width: 90%;
+  max-height: 70vh;
+  border-radius: 10px;
+}
+
+.acoes-modal {
+  margin-top: 20px;
+}
+
+.btn-voltar {
+  background: gray;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+.btn-musica {
+  position: fixed;
+  top: 20px;     /* sobe pro topo */
+  left: 20px;    /* vai pra esquerda */
+  
+  background: black;
+  color: white;
+  padding: 10px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  z-index: 1000; /* garante que fique por cima */
+}
