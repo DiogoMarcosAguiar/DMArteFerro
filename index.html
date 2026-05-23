@@ -1447,13 +1447,29 @@ function animarMascotes(){
         const largura = m.el.offsetWidth;
         const altura = m.el.offsetHeight;
 
-        if(m.x <= 0 || m.x + largura >= window.innerWidth){
-            m.dx *= -1;
-            m.el.style.transform = m.dx > 0 ? "scaleX(1)" : "scaleX(-1)";
+        // CORREÇÃO: Lógica de bordas à prova de bugs
+        // Borda Esquerda
+        if (m.x <= 0) {
+            m.x = 0; // Força a voltar para dentro
+            if (m.dx < 0) m.dx *= -1; // Só inverte se estiver indo para fora
+            m.el.style.transform = "scaleX(1)";
+        } 
+        // Borda Direita
+        else if (m.x + largura >= window.innerWidth) {
+            m.x = window.innerWidth - largura; // Força a voltar para dentro
+            if (m.dx > 0) m.dx *= -1; // Só inverte se estiver indo para fora
+            m.el.style.transform = "scaleX(-1)";
         }
 
-        if(m.y <= 0 || m.y + altura >= window.innerHeight){
-            m.dy *= -1;
+        // Borda Superior
+        if (m.y <= 0) {
+            m.y = 0;
+            if (m.dy < 0) m.dy *= -1;
+        } 
+        // Borda Inferior
+        else if (m.y + altura >= window.innerHeight) {
+            m.y = window.innerHeight - altura;
+            if (m.dy > 0) m.dy *= -1;
         }
 
         m.el.style.left = m.x + "px";
@@ -1464,35 +1480,28 @@ function animarMascotes(){
 
     });
 
-    // COLISÃO ENTRE MASCOTES
+    // COLISÃO ENTRE MASCOTES (Mantida)
+    const m1 = mascotes[0];
+    const m2 = mascotes[1];
 
-const m1 = mascotes[0];
-const m2 = mascotes[1];
+    if (
+        m1.x < m2.x + m2.el.offsetWidth &&
+        m1.x + m1.el.offsetWidth > m2.x &&
+        m1.y < m2.y + m2.el.offsetHeight &&
+        m1.y + m1.el.offsetHeight > m2.y
+    ){
+        m1.dx *= -1;
+        m1.dy *= -1;
 
-if (
-    m1.x < m2.x + m2.el.offsetWidth &&
-    m1.x + m1.el.offsetWidth > m2.x &&
-    m1.y < m2.y + m2.el.offsetHeight &&
-    m1.y + m1.el.offsetHeight > m2.y
-){
+        m2.dx *= -1;
+        m2.dy *= -1;
 
-    // INVERTE DIREÇÃO
+        m1.x += m1.dx * 5;
+        m1.y += m1.dy * 5;
 
-    m1.dx *= -1;
-    m1.dy *= -1;
-
-    m2.dx *= -1;
-    m2.dy *= -1;
-
-    // EMPURRA UM POUCO PRA EVITAR BUG
-
-    m1.x += m1.dx * 5;
-    m1.y += m1.dy * 5;
-
-    m2.x += m2.dx * 5;
-    m2.y += m2.dy * 5;
-
-}
+        m2.x += m2.dx * 5;
+        m2.y += m2.dy * 5;
+    }
 
     requestAnimationFrame(animarMascotes);
 }
