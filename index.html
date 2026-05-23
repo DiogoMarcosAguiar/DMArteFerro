@@ -571,7 +571,7 @@
 
    </section>
 
-<h2 class="titulo-secao">🕯️ Castiçais 🕯️</h2>
+<h2 class="titulo-secao">Ferramenta para assentamento</h2>
 
 <section class="produtos">
 
@@ -1366,6 +1366,245 @@
     </div>
   </div>
 </div>
+
+<!-- MASCOTES -->
+
+<img src="mascote10.png" class="mascote" id="eduardo">
+<div class="fala" id="falaEduardo"></div>
+
+<img src="mascote20.png" class="mascote" id="diogo">
+<div class="fala" id="falaDiogo"></div>
+
+<style>
+
+.mascote{
+    position: fixed;
+    width: 300px;
+    z-index: 999;
+    cursor: pointer;
+    transition: transform 0.2s linear;
+    filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
+}
+
+.fala{
+    position: fixed;
+    max-width: 300px;
+    background: white;
+    color: black;
+    padding: 12px;
+    border-radius: 15px;
+    font-size: 20px;
+    font-family: Arial;
+    z-index: 100000;
+    display: none;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+@media(max-width:768px){
+    .mascote{
+        width: 120px;
+    }
+
+    .fala{
+        font-size: 22px;
+        max-width: 180px;
+    }
+}
+
+</style>
+
+<script>
+
+const mascotes = [
+
+{
+    el: document.getElementById("eduardo"),
+    fala: document.getElementById("falaEduardo"),
+    x: 100,
+    y: 100,
+    dx: 0.4,
+    dy: 0.3
+},
+
+{
+    el: document.getElementById("diogo"),
+    fala: document.getElementById("falaDiogo"),
+    x: 400,
+    y: 250,
+    dx: -0.5,
+    dy: -0.4
+}
+
+];
+
+function animarMascotes(){
+
+    mascotes.forEach(m => {
+
+        m.x += m.dx;
+        m.y += m.dy;
+
+        const largura = m.el.offsetWidth;
+        const altura = m.el.offsetHeight;
+
+        if(m.x <= 0 || m.x + largura >= window.innerWidth){
+            m.dx *= -1;
+            m.el.style.transform = m.dx > 0 ? "scaleX(1)" : "scaleX(-1)";
+        }
+
+        if(m.y <= 0 || m.y + altura >= window.innerHeight){
+            m.dy *= -1;
+        }
+
+        m.el.style.left = m.x + "px";
+        m.el.style.top = m.y + "px";
+
+        m.fala.style.left = (m.x + 80) + "px";
+        m.fala.style.top = (m.y - 20) + "px";
+
+    });
+
+    // COLISÃO ENTRE MASCOTES
+
+const m1 = mascotes[0];
+const m2 = mascotes[1];
+
+if (
+    m1.x < m2.x + m2.el.offsetWidth &&
+    m1.x + m1.el.offsetWidth > m2.x &&
+    m1.y < m2.y + m2.el.offsetHeight &&
+    m1.y + m1.el.offsetHeight > m2.y
+){
+
+    // INVERTE DIREÇÃO
+
+    m1.dx *= -1;
+    m1.dy *= -1;
+
+    m2.dx *= -1;
+    m2.dy *= -1;
+
+    // EMPURRA UM POUCO PRA EVITAR BUG
+
+    m1.x += m1.dx * 5;
+    m1.y += m1.dy * 5;
+
+    m2.x += m2.dx * 5;
+    m2.y += m2.dy * 5;
+
+}
+
+    requestAnimationFrame(animarMascotes);
+}
+
+window.onload = () => {
+    animarMascotes();
+};
+
+
+// FALAS EDUARDO
+
+const frasesEduardo = [
+
+"Olá, Seja bem vindo ao site da serralheria DMArtFerro.",
+
+"Você procura produtos em ferro para seu assentamento?",
+
+"Está no lugar certo!",
+
+"Chama no Zap, talvez temos a solução.",
+
+"Confira nossas promoções!!!",
+
+"Temos Lindas Tronqueiras, varios modelos",
+
+"Fazemos sob encomenda.",
+
+"Temos castiçais para altares e assentamento.",
+
+"Temos Ofás de Oxossi.",
+
+"Temos ferramentas para assentamento de Exú e Pomba Gira.",
+
+"Se você tem um desenho e quer reproduzir em ferro nos fazemos!",
+
+"Vendemos no atacado e varejo"
+
+];
+
+let cliqueEduardo = 0;
+
+document.getElementById("eduardo").addEventListener("click", () => {
+
+const fala = document.getElementById("falaEduardo");
+
+fala.innerText = frasesEduardo[cliqueEduardo];
+
+fala.style.display = "block";
+
+cliqueEduardo++;
+
+if(cliqueEduardo >= frasesEduardo.length){
+    cliqueEduardo = 0;
+
+      setTimeout(() => {
+        fala.style.display = "none";
+    }, 2000);
+}
+
+});
+
+
+// FALAS DIOGO
+
+const frasesDiogo = [
+
+"Olá, Seja bem vindo ao site da DMArtFerro.",
+
+"Você procura produtos em ferro para seu assentamento?",
+
+"Está no lugar certo!",
+
+"Chama no Zap, talvez temos a solução.",
+
+"Temos Lindas Tronqueiras, varios modelos",
+
+"Fazemos sob encomenda.",
+
+"Temos ferramentas para assentamento de Exú e Pomba Gira.",
+
+"Se você tem um desenho e quer reproduzir em ferro nos fazemos!",
+
+"Temos castiçais para altares e assentamento.",
+
+"Temos Ofás de Oxossi",
+
+"Vendemos no atacado e varejo"
+
+];
+
+let cliqueDiogo = 0;
+
+document.getElementById("diogo").addEventListener("click", () => {
+
+const fala = document.getElementById("falaDiogo");
+
+fala.innerText = frasesDiogo[cliqueDiogo];
+
+fala.style.display = "block";
+
+cliqueDiogo++;
+
+if(cliqueDiogo >= frasesDiogo.length){
+    cliqueDiogo = 0;
+
+     setTimeout(() => {
+        fala.style.display = "none";
+    }, 2000);
+}
+});
+
+</script>
 
 </body>
 </html>
