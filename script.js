@@ -58,19 +58,17 @@ function finalizarCompra(){
     return;
   }
 
-  let mensagem = "Olá, quero comprar:\n\n";
+  let mensagem = "Olá, quero fazer um pedido:%0A%0A";
   let total = 0;
 
   carrinho.forEach(item => {
-    mensagem += `- ${item.nome} R$${item.preco}\n`;
+    mensagem += `- ${item.nome} - R$${item.preco}%0A`;
     total += item.preco;
   });
 
-  mensagem += `\nTotal: R$${total}`;
+  mensagem += `%0ATotal: R$${total}`;
 
-  let url = "https://wa.me/5511984416554?text=" + encodeURIComponent(mensagem);
-
-  window.open(url, "_blank");
+  window.open(`https://wa.me/5511984416554?text=${mensagem}`, "_blank");
 }
 
 let index = 0;
@@ -135,5 +133,47 @@ function toggleMusica(){
   } else {
     musica.pause();
     btn.innerText = "🔇";
+  }
+}
+
+function toggleCategoria(idCategoria) {
+  // Pega o bloco de conteúdo correspondente
+  var conteudo = document.getElementById('cat-' + idCategoria);
+  var seta = document.getElementById('seta-' + idCategoria);
+  
+  // Se estiver escondido, mostra. Se estiver visível, esconde.
+  if (conteudo.style.display === "block") {
+    conteudo.style.display = "none";
+    seta.style.transform = "rotate(0deg)"; // Seta aponta pra baixo
+  } else {
+    conteudo.style.display = "block";
+    seta.style.transform = "rotate(180deg)"; // Seta vira pra cima
+  }
+}
+
+// Pega o modal e os elementos internos
+var modal = document.getElementById("imageModal");
+var modalImg = document.getElementById("imgFull");
+var span = document.getElementsByClassName("close-modal")[0];
+
+// Adiciona um ouvinte de clique em TODAS as imagens com a classe 'img-catalogo'
+document.querySelectorAll('.img-catalogo').forEach(item => {
+  item.addEventListener('click', event => {
+    // Ao clicar, mostra o modal
+    modal.style.display = "block";
+    // Define a imagem do modal como a imagem que foi clicada
+    modalImg.src = event.target.src;
+  })
+})
+
+// Quando o usuário clica no 'X', fecha o modal
+span.onclick = function() { 
+  modal.style.display = "none";
+}
+
+// Quando o usuário clica em qualquer lugar fora da imagem, fecha o modal
+modal.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
   }
 }
