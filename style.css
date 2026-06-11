@@ -620,12 +620,40 @@ body {
   transform: scale(1.05); /* Pequeno zoom no hover para indicar que é clicável */
 }
 
-/* Responsividade: para telas menores (celular) */
+/* ==========================================================================
+   Responsividade: Ajustes apenas para telas menores (celular)
+   ========================================================================== */
 @media only screen and (max-width: 700px){
   .modal-content {
     width: 100%;
   }
+  
+  /* 📱 REDUZ O TAMANHO DA ETIQUETA NO CELULAR */
+  .etiqueta-preco {
+    width: 60px !important;  /* Diminui de 90px para 60px para não cobrir o produto */
+    bottom: -2px !important; /* Ajuste fino de posição se necessário */
+    right: -2px !important;
+  }
+  
+  /* 📱 AJUSTA A LETRA DO PREÇO PARA CABER NA ETIQUETA MENOR */
+  .etiqueta-preco span {
+    font-size: 7.5px !important; /* Diminui um tiquinho para centralizar na explosão */
+    width: 75% !important;       /* Dá um pouquinho mais de área horizontal */
+  }
+
+  /* 📱 OPCIONAL: Reduz também a tag de código para acompanhar o celular */
+  .codigo-tag {
+    font-size: 0.65rem !important;
+    padding: 2px 6px !important;
+    top: 5px !important;
+    left: 5px !important;
+  }
 }
+
+/* ==========================================================================
+   Seu código original (PERFEITO - Não mexemos em nada do visual do PC)
+   ========================================================================== */
+
 /* Container do produto: controla o tamanho máximo para não ficar gigante */
 .produto-container {
   position: relative;
