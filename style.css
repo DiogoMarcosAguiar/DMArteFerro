@@ -626,3 +626,74 @@ body {
     width: 100%;
   }
 }
+/* Container do produto: controla o tamanho máximo para não ficar gigante */
+.produto-container {
+  position: relative;
+  display: inline-block;
+  max-width: 250px; /* ⚠️ AJUSTE AQUI: Mude 250px para o tamanho que você quer a foto do seu produto */
+  width: 100%;      /* Garante que seja responsivo */
+}
+
+/* Foto do produto: se adapta perfeitamente ao tamanho do container */
+.img-produto {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* A Etiqueta: fixa no cantinho, flutuando por cima da imagem */
+.etiqueta-preco {
+  position: absolute;
+  bottom: 0;   /* Grudada na parte de baixo da foto */
+  right: 0;    /* Grudada no canto direito da foto */
+  width: 90px;   /* ⚠️ AJUSTE AQUI: Tamanho da etiqueta (65px fica bem discreto) */
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;   /* Garante que ela fique na frente da foto */
+}
+
+/* Imagem da explosão amarela */
+.etiqueta-preco img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Texto do preço bem centralizado no meio da explosão */
+.etiqueta-preco span {
+  position: absolute;
+  color: #000000;
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  font-size: 9px; /* Texto menor para caber na etiqueta pequena */
+  text-align: center;
+  line-height: 1;
+  width: 70%;      /* Evita que o texto encoste nas pontas da explosão */
+}
+
+/* Container que segura a foto e o código juntos */
+.item-foto-wrapper {
+  position: relative; /* Essencial para permitir que a etiqueta fique por cima da foto */
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+/* Estilo da etiqueta de código (Tag) */
+.codigo-tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: rgba(26, 26, 26, 0.85); /* Preto fosco com leve transparência */
+  color: #ffffff;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  letter-spacing: 1px; /* Dá um espaço chique entre as letras */
+  border-radius: 3px;
+  z-index: 10; /* Garante que fique acima da imagem */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Bordinha sutil */
+  pointer-events: none; /* Garante que se o usuário clicar na tag, ele ainda clique na foto para dar o zoom */
+}
