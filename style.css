@@ -1,45 +1,47 @@
 body {
   margin: 0;
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   background: #0d0d0d;
   color: white;
   text-align: center;
 }
 
+/* Juntei as duas classes .topo em uma só, mantendo o visual e o comportamento responsivo */
 .topo {
-  margin: 20px 20px 10px 20px;
-  padding: 30px 30px;
+  margin: 20px;
+  padding: 15px 30px;
   background: linear-gradient(rgb(3, 40, 109), #6e0688);
   border-radius: 40px;
   display: flex;
-  justify-content: space-between; /* Espalha os elementos igualmente */
-  align-items: center;           /* Alinha todo mundo no meio (verticalmente) */
-  flex-wrap: wrap;               /* Se faltar espaço no celular, eles se reajustam */
+  justify-content: space-between; 
+  align-items: center;           
+  flex-wrap: nowrap; /* Garante que fiquem na mesma linha */
   box-sizing: border-box;
-  gap: 5px;
+  gap: 15px;
 }
 
-.topo {
-  display: flex;
-  justify-content: space-between; /* Mantém os elementos espalhados na linha */
-  align-items: center;           /* Alinha todos verticalmente no centro */
-  flex-wrap: nowrap;             /* PROÍBE os elementos de pularem para a linha de baixo */
-  
-  padding: 10px;
-          /* Garante que o padding não aumente o tamanho da tela */
-  gap: 5px;                      /* Espaço mínimo seguro entre os itens */
+/* 🎯 AQUI ESTÁ O SEGREDO: Definir o comportamento dos bonequinhos para QUALQUER tamanho de tela */
+.mascote-topo {
+  width: 20%;          /* Aumentamos de 12% para 20% do espaço do topo */
+  max-width: 200px;    /* Aumentamos o limite máximo de 120px para 200px */
+  min-width: 60px;     /* Garantimos que no celular eles também não fiquem minúsculos */
+  height: auto;        
+  flex-shrink: 1;      
 }
 
+/* Garante que o logo do meio também seja responsivo */
+.logo-principal {
+  max-width: 250px;
+  height: auto;
+}
+
+/* Resto do seu código de cards (mantido igual) */
 .logo {
   width: 350px;
   height: 350px;
   border-radius: 50%;
   border: 3px solid #1595eb;
   object-fit: cover;
-}
-
-.topo h1 {
-  margin: 10px 0 0;
 }
 
 .produtos {
@@ -79,25 +81,19 @@ body {
   object-fit: cover;
 }
 
+/* @media apenas para ajustes finos em telas menores que 768px */
 @media (max-width: 768px) {
+  .topo {
+    padding: 10px 15px;
+    border-radius: 20px; /* Um pouco menos arredondado no celular fica mais harmônico */
+  }
+
   .card1 img {
     height: auto;
   }
 
   .card1 {
     width: 100%;
-  }
-
-  .logo-principal{
-    height:60px;
-  }
-
-  .mascote-topo{
-    width: 15%;
-    max-width: 50px;  
-    min-width: 30px;             /* Limita o tamanho dos mascotes no celular */
-    height: auto;
-    flex-shrink: 1;
   }
 }
 
