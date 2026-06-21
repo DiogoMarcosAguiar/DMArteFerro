@@ -89,13 +89,13 @@ body {
   }
 
   .logo-principal{
-    height:80px;
+    height:60px;
   }
 
   .mascote-topo{
     width: 15%;
     max-width: 50px;  
-    min-width: 35px;             /* Limita o tamanho dos mascotes no celular */
+    min-width: 30px;             /* Limita o tamanho dos mascotes no celular */
     height: auto;
     flex-shrink: 1;
   }
