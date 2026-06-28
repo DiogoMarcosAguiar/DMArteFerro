@@ -174,19 +174,30 @@ body {
 
 }
 
-.whatsapp-fixo {
+/* Estilo do Botão do WhatsApp Fixo */
+.whatsapp-btn {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #25D366;
+  bottom: 20px;       /* Distância do fundo da tela */
+  right: 20px;        /* Distância do canto direito */
   width: 60px;
   height: 60px;
+  background-color: #25d366; /* Verde oficial do WhatsApp */
+  color: #fff;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
-  z-index: 999;
+  font-size: 35px;    /* Tamanho do ícone */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 9999;      /* Garante que ele vai ficar por cima de tudo */
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  text-decoration: none;
+}
+
+/* Efeito ao passar o mouse */
+.whatsapp-btn:hover {
+  background-color: #20ba5a;
+  transform: scale(1.1); /* Dá um leve zoom dinâmico */
 }
 
 
@@ -215,11 +226,6 @@ body {
   justify-content: center; /* CENTRALIZA */
   gap: 10px;
   margin-top: 10px;
-}
-
-.whatsapp-fixo:hover {
-  transform: scale(1.1);
-  transition: 0.3s;
 }
 
 .modal {
